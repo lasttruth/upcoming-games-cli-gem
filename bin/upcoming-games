@@ -1,5 +1,6 @@
 #!/usr/bin/env ruby
 
-require './lib/upcoming_games'
+require "bundler/setup"
+require "upcoming_games"
 
 UpcomingGames::CLI.new.call

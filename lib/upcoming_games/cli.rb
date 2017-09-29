@@ -4,6 +4,7 @@ class UpcomingGames::CLI
     puts "Upcoming Videos Games:"
     list_games
     menu
+    goodbye
   end
 
 
@@ -13,6 +14,7 @@ class UpcomingGames::CLI
 
     2 Assassin's Creed Origins - oct 27 - PC PS4 XB1 - Action-Adventure - Pre order availiable.
     DOC
+    @games = UpcomingGames::Upcoming.soon
   end
 
   def menu
@@ -27,6 +29,10 @@ class UpcomingGames::CLI
         puts "More info on deal 1..."
       when "2"
         puts "More info on deal 2..."
+      when "list"
+        list_games
+      else
+        puts "Not sure we have what you are looking for."
       end
     end
   end
