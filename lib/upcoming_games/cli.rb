@@ -9,12 +9,10 @@ class UpcomingGames::CLI
 
 
   def list_games
-    puts <<-DOC.gsub /^\s*/,''
-    1 South Park: The Fractured But Whole - oct 17 - PC PS4 XB1 - RPG - Pre order availiable
-
-    2 Assassin's Creed Origins - oct 27 - PC PS4 XB1 - Action-Adventure - Pre order availiable.
-    DOC
     @games = UpcomingGames::Upcoming.soon
+    @games.each.with_index(1) do |game, i|
+      puts "#{i}. #{game.name} - #{game.realease} - #{game.platforms} - #{game.genre} - #{game.availiability}"
+    end
   end
 
   def menu
@@ -24,12 +22,10 @@ class UpcomingGames::CLI
     input = gets.strip
     while input != "exit"
       input = gets.strip.downcase
-      case input
-      when "1"
-        puts "More info on deal 1..."
-      when "2"
-        puts "More info on deal 2..."
-      when "list"
+      if input.to_i > 0
+        game_list = @games[input.to_i-1]
+        puts "#{game.name} - #{game.realease} - #{game.platforms} - #{game.genre} - #{game.availiability}"
+      elsif input == "list"
         list_games
       else
         puts "Not sure we have what you are looking for."
