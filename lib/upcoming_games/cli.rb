@@ -9,10 +9,13 @@ class UpcomingGames::CLI
 
 
   def list_games
-    @games = UpcomingGames::Upcoming.soon
-    @games.each.with_index(1) do |game, i|
-      puts "#{i}. #{game.name} - #{game.realease} - #{game.platforms} - #{game.genre} - #{game.availiability}"
-    end
+   @games = UpcomingGames::Upcoming.all
+   @games.each.with_index(1) do |game, i|
+     while i <= 20
+       puts "#{i}. #{game[i]}"
+       i += 1
+     end
+   end
   end
 
   def menu
@@ -24,7 +27,7 @@ class UpcomingGames::CLI
       input = gets.strip.downcase
       if input.to_i > 0
         game_list = @games[input.to_i-1]
-        puts "#{game.name} - #{game.realease} - #{game.platforms} - #{game.genre} - #{game.availiability}"
+        puts "#{@games.name} - #{@games.realease} - #{@games.platforms} - #{@games.genre} - #{@games.availiability}"
       elsif input == "list"
         list_games
       else
