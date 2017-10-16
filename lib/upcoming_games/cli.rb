@@ -1,26 +1,28 @@
 class UpcomingGames::CLI
 
   def call
-    puts "Upcoming Videos Games:"
     list_games
     menu
   end
 
 
   def list_games
-   @upcoming_list = UpcomingGames::Upcoming.all
+    puts "Upcoming Videos Games:"
+    @upcoming_list = UpcomingGames::Upcoming.all
 
-   @upcoming_list.each.with_index(1) do |game, i|
-     puts "#{i}. #{game.name}"
-   end
+    @upcoming_list.each.with_index(1) do |game, i|
+      puts "#{i}. #{game.name}"
+    end
 
-   @upcoming_list
+    @upcoming_list
+
+    puts "Enter the number of the game you want more info on or type exit:"
   end
 
 
   def menu
 
-    puts "Enter the number of the game you want more info on or type exit:"
+
     input = nil
     input = gets.strip
 
