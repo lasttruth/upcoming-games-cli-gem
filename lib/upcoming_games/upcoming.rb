@@ -1,5 +1,5 @@
 class UpcomingGames::Upcoming
-  attr_accessor :name, :release, :platforms, :genre, :summary
+  attr_accessor :name, :release, :platforms, :genre, :summary, :url
 
 
   def self.all
@@ -30,6 +30,7 @@ class UpcomingGames::Upcoming
       game.release = info.css('.releaseDate').text
       game.genre = info.css('.item-genre').text.strip
       game.platforms = info.css('.item-platform').text
+      game.url = "http://www.ign.com"+info.css('a').attr('href').value
       game.summary = info.css('.item-details').text.strip
       #binding.pry
 
