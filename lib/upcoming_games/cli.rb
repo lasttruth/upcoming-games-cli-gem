@@ -11,7 +11,7 @@ class UpcomingGames::CLI
     @upcoming_list = UpcomingGames::Upcoming.all
 
     @upcoming_list.each.with_index(1) do |game, i|
-      puts "#{i}. #{game.name}"
+      puts "#{i}. #{game.name} - #{game.platforms}"
     end
 
     @upcoming_list
@@ -24,12 +24,11 @@ class UpcomingGames::CLI
 
 
     input = nil
-    input = gets.strip
 
     while input != "exit"
       input = gets.strip.downcase
 
-      if input.to_i > 0
+      if input.to_i > 0 && input.to_i <= @upcoming_list.length
         game_list = @upcoming_list[input.to_i-1]
         puts "#{game_list.name} - #{game_list.platforms} - #{game_list.genre} - #{game_list.release}"
         puts ""
